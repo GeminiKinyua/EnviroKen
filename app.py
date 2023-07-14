@@ -1,5 +1,4 @@
 import streamlit as st
-import tensorflow as tf
 import numpy as np
 import keras
 from tensorflow.keras.utils import load_img, img_to_array
