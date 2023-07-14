@@ -1,12 +1,12 @@
 # EnviroKen
 A simple web app, that integrates a waste classification model to help categorize waste images. 
 # Technologies Used
-Python
-Tensorflow
-Keras
-Pillow
-Numpy
-Streamlit
+Python  
+Tensorflow  
+Keras  
+Pillow  
+Numpy  
+Streamlit  
 # Summary
 This project aimed to tackle the environmental issue of improper waste disposal by employing a unique approach that combine technology and behavioural economics. The main deliverable was an image classification model integrated into an app. The model architecture is a VGG16 that was initially trained on the ImageNet Dataset. Transfer learning was used to fine tune the model to learn how to classify waste. The model was then deployed on an interactive web application to allow users classify their own waste images. A reward was then provided depending on the class of the waste item.  
 # Dataset
@@ -26,7 +26,7 @@ I am yet to deploy the app on streamlit cloud, but I'm working on that. Users si
 <img width="636" alt="image" src="https://github.com/GeminiKinyua/EnviroKen/assets/70109027/962b9420-11d4-4253-84c5-ba18c2b48081">
 
 # Future Directions
-Develop a stacked model, such that a user can upload a single image with multiple items. The model will first detect the items in the image, then categorize each item accordingly. 
+Develop a stacked model, such that a user can upload a single image with multiple items. The model will first detect the items in the image, then categorize each item accordingly.  
 Integrate a sophisticated reward system that takes into consideration the quantity of waste a user is recycling.
 
 
