@@ -21,7 +21,7 @@ The architecture of VGG16 consists of 16 layers, including 13 convolutional laye
 To fine tune the model, I froze the initial layers and trained the last few layers on the dataset. This  is because the initial layers of a convolutional neural network learn basic features, and the later layers learn more complex, task-specific features. By freezing the initial layers, basic features learned from ImageNet are preserved, and by training the last few layers, the model learns to recognize waste-related features. ​
 
 # Streamlit App
-I am yet to deploy the app on streamlit cloud, but I'm working on that. Users simply upload a waste image, the model then analyses it and predicts the class of the uploaded image. I'm also working on a reward system that will give users a reward depending on the predicted class. This is aimed at encouraging sustainable behaviour through reuse and recycling. 
+Users simply upload a waste image, the model then analyses it and predicts the class of the uploaded image. I'm also working on a reward system that will give users a reward depending on the predicted class. This is aimed at encouraging sustainable behaviour through reuse and recycling. Test this app here: https://enviroken.streamlit.app/
 
 <img width="636" alt="image" src="https://github.com/GeminiKinyua/EnviroKen/assets/70109027/962b9420-11d4-4253-84c5-ba18c2b48081">
 
