@@ -10,12 +10,17 @@ def load_model():
     return model
 
 def predict_image(model, img):
-    img = img_to_array(img)
-    img = np.expand_dims(img, axis=0)
-    img = img / 255.0
-    prediction = model.predict(img)
-    class_index = np.argmax(prediction, axis=1)
-    return class_index
+    # Ensure the image is a NumPy array with 3 dimensions
+    if img.ndim == 3 and img.shape[2] == 3:
+        img = img_to_array(img)
+        img = np.expand_dims(img, axis=0)
+        img = img / 255.0
+        prediction = model.predict(img)
+        class_index = np.argmax(prediction, axis=1)
+        return class_index
+    else:
+        st.error("Image format not supported. Please upload a valid image.")
+        return None
 
 st.title("ENVIROKEN")
 st.write("This is a simple image classification web app that predicts the waste type.")
@@ -34,23 +39,24 @@ if uploaded_file is not None:
     st.write("Predicting...")
     image = image.resize((224, 224))
     label = predict_image(model, image)
-    st.write('Predicted Class: %s' % class_labels[label[0]])
+    if label is not None:
+        st.write('Predicted Class: %s' % class_labels[label[0]])
 
-    # Reward based on class
-    if st.button('Get Reward'):
-        if class_labels[label[0]] == 'e-Waste':
-            reward = 'You get reward 1!'
-        elif class_labels[label[0]] == 'Glass':
-            reward = 'You get reward 2!'
-        elif class_labels[label[0]] == 'Metal':
-            reward = 'You get reward 3!'
-        elif class_labels[label[0]] == 'Organic':
-            reward = 'You get reward 4!'
-        elif class_labels[label[0]] == 'Paper':
-            reward = 'You get reward 5!'
-        elif class_labels[label[0]] == 'Plastic':
-            reward = 'You get reward 6!'
-        else:
-            reward = 'You get no reward!'
+        # Reward based on class
+        if st.button('Get Reward'):
+            if class_labels[label[0]] == 'e-Waste':
+                reward = 'You get reward 1!'
+            elif class_labels[label[0]] == 'Glass':
+                reward = 'You get reward 2!'
+            elif class_labels[label[0]] == 'Metal':
+                reward = 'You get reward 3!'
+            elif class_labels[label[0]] == 'Organic':
+                reward = 'You get reward 4!'
+            elif class_labels[label[0]] == 'Paper':
+                reward = 'You get reward 5!'
+            elif class_labels[label[0]] == 'Plastic':
+                reward = 'You get reward 6!'
+            else:
+                reward = 'You get no reward!'
 
-        st.write(reward)
+            st.write(reward)
