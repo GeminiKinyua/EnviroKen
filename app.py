@@ -1,12 +1,13 @@
 import streamlit as st
 import numpy as np
 import keras
+import tensorflow as tf
 from tensorflow.keras.utils import load_img, img_to_array
 from keras.applications.vgg16 import preprocess_input
 from PIL import Image
 
 def load_model():
-    model = tf.keras.models.load_model('waste_classification_model.h5')
+    model = tf.keras.models.load_model('enviroken-classifier.h5')
     return model
 
 def predict_image(model, img):
@@ -19,11 +20,11 @@ def predict_image(model, img):
 
 
 st.title("ENVIROKEN")
-st.write("This is a simple image classification web app to predict the type of waste")
-
+st.write("This is a simple image classification web app that predicts the waste type")
+st.write("The goal is to integrate a reward system that determines a reward based on the predicted class")
 model = load_model()
 
-class_labels = ['Cardboard', 'Glass', 'Metal', 'Paper', 'Plastic']
+class_labels = ['e-Waste', 'Glass', 'Metal', 'Organic','Paper', 'Plastic']
 
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "png"])
 
@@ -38,17 +39,20 @@ if uploaded_file is not None:
 
     # Reward based on class
     if st.button('Get Reward'):
-        if class_labels[label[0]] == 'Plastic':
+        if class_labels[label[0]] == 'e-waste':
             reward = 'You get reward 1!'
-        elif class_labels[label[0]] == 'Cardboard':
-            reward = 'You get reward 2!'
         elif class_labels[label[0]] == 'Glass':
-            reward = 'You get reward 3!'
+            reward = 'You get reward 2!'
         elif class_labels[label[0]] == 'Metal':
+            reward = 'You get reward 3!'
+        elif class_labels[label[0]] == 'Organic':
             reward = 'You get reward 4!'
         elif class_labels[label[0]] == 'Paper':
             reward = 'You get reward 5!'
+        elif class_labels[label[0]] == 'Plastic':
+            reward = 'You get reward 6!'
         else:
             reward = 'You get no reward!'
+
 
         st.write(reward)
