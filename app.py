@@ -10,17 +10,13 @@ def load_model():
     return model
 
 def predict_image(model, img):
-    # Ensure the image is a NumPy array with 3 dimensions
-    if img.ndim == 3 and img.shape[2] == 3:
-        img = img_to_array(img)
-        img = np.expand_dims(img, axis=0)
-        img = img / 255.0
-        prediction = model.predict(img)
-        class_index = np.argmax(prediction, axis=1)
-        return class_index
-    else:
-        st.error("Image format not supported. Please upload a valid image.")
-        return None
+    img = img_to_array(img)
+    img = np.expand_dims(img, axis=0)
+    img = img/255.0 
+    prediction = model.predict(img)
+    class_index = np.argmax(prediction, axis=1)
+    return class_index
+
 
 st.title("ENVIROKEN")
 st.write("This is a simple image classification web app that predicts the waste type.")
